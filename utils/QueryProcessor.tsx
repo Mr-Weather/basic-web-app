@@ -22,5 +22,12 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    const nums = query.match(/-?\d+/g)?.map(Number) ?? [];
+    if (nums.length > 0) {
+      return String(nums.reduce((a, b) => a + b, 0));
+    }
+  }
+
   return "";
 }
