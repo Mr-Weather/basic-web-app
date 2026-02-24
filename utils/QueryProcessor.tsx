@@ -15,5 +15,12 @@ export default function QueryProcessor(query: string): string {
     return "junkaife";
   }
 
+  if (query.toLowerCase().includes("largest")) {
+    const nums = query.match(/-?\d+/g)?.map(Number) ?? [];
+    if (nums.length > 0) {
+      return String(Math.max(...nums));
+    }
+  }
+
   return "";
 }
