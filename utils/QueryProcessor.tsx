@@ -49,5 +49,18 @@ export default function QueryProcessor(query: string): string {
       return String(nums.reduce((a, b) => a - b));
     }
   }
+
+  if (query.toLowerCase().includes("prime")) {
+    const nums = query.match(/-?\d+/g)?.map(Number) ?? [];
+    if (nums.length > 0) {
+      return String(nums.filter((n) => {
+        if (n <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) return false;
+        }
+        return true;
+      }));
+    }
+  }
   return "";
 }
