@@ -43,5 +43,11 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("minus")) {
+    const nums = query.match(/-?\d+/g)?.map(Number) ?? [];
+    if (nums.length > 0) {
+      return String(nums.reduce((a, b) => a - b));
+    }
+  }
   return "";
 }
