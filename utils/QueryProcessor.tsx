@@ -29,5 +29,19 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("both a square and a cube")) {
+    const nums = query.match(/-?\d+/g)?.map(Number) ?? [];
+    if (nums.length > 0) {
+      return String(nums.filter((n) => Number.isInteger(Math.sqrt(n)) && Number.isInteger(Math.cbrt(n))));
+    }
+  }
+
+  if (query.toLowerCase().includes("multiplied")) {
+    const nums = query.match(/-?\d+/g)?.map(Number) ?? [];
+    if (nums.length > 0) {
+      return String(nums.reduce((a, b) => a * b, 1));
+    }
+  }
+
   return "";
 }
